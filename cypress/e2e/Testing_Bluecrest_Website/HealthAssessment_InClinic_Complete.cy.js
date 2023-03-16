@@ -13,11 +13,11 @@ context('Launch Bluecrest Website' , () =>{
 
     })
 
-    it('Checkout HealthChecks (In Clinic) Active as a new Customer in the main page', () =>{
+    it('Checkout HealthChecks (In Clinic) Complete as a new Customer in the main page', () =>{
         //Hover Health Checks and Click Active
         cy.get('#menu-item-660').trigger('mouseover')
-        cy.get('#menu-item-662').should('contains.text','Active')
-        cy.contains('Active').click()
+        cy.get('#menu-item-668').should('contains.text','Complete')
+        cy.contains('Complete').click()
         
         //Wait for any pop ups 
         cy.wait(5000)
@@ -28,14 +28,14 @@ context('Launch Bluecrest Website' , () =>{
           .find('button[title="Close"]')
           .click();
 
-        //Test Active Screen
-        cy.url().should('include', '/tests/active')
+        //Test Complete Screen
+        cy.url().should('include', '/tests/complete')
         cy.get('.package-card-content').should('contains.text','Health MOTs')
-        cy.get('.package-title').should('contain.text','Active')
-        cy.get('.current-price').should('contains.text', '£149') // Current Prize £149
+        cy.get('.package-title').should('contain.text','Complete')
+        cy.get('.current-price').should('contains.text', '£279') // Current Prize £279
         cy.get('.package-detail-list').should('be.visible') // package-detail-list
         cy.log('Package detail lists include Sex and Age')
-        cy.get('.separate-price').should('contain.text','£290 when bought separately');
+        cy.get('.separate-price').should('contain.text','£430 when bought separately');
         
         //Book Now
         cy.get('a[href*="/buy/package"]').contains('Book now').click({ force: true });
@@ -98,7 +98,7 @@ context('Launch Bluecrest Website' , () =>{
         //Order Summary
         cy.get('.order_summary_cards')
           .find('h5[class="custom-background-color"]')
-          .should('contains.text','Active Package');
+          .should('contains.text','Complete');
         cy.get('.order_summary_cards')
           .find('p')
           .should('contains.text','The Charmandean Centre, Forest Road');
@@ -108,7 +108,7 @@ context('Launch Bluecrest Website' , () =>{
         cy.contains('Cost').should('be.visible')
         cy.get('.text-right')
           .find('span[class="total-price custom-price-color"]')
-          .should('contains.text','Total £149.00');
+          .should('contains.text','Total £279.00');
         cy.get('.text-right')
           .find('button[id="discount-code-btn"]')
           .should('contains.text','Got a discount code?');
@@ -133,7 +133,7 @@ context('Launch Bluecrest Website' , () =>{
         cy.get('h1').should('contains.text','Personal details')
         cy.contains('Already Registered?').should('be.visible')
         cy.contains('Save some time and Login here... if not, please continue below').should('be.visible')
-        cy.contains('Order 1 - Active Package , at The Charmandean Centre, Forest Road').should('be.visible')
+        cy.contains('Order 1 - Complete , at The Charmandean Centre, Forest Road').should('be.visible')
         
         cy.contains('About you').should('be.visible')
 
@@ -166,7 +166,7 @@ context('Launch Bluecrest Website' , () =>{
         // cy.get('h1').should('contains.text','Order Payment')
     })
 
-    it('Checkout HealthChecks (In Clinic) Active as a new Customer in the health checks page via Book Now workflow',()=>{
+    it('Checkout HealthChecks (In Clinic) Complete as a new Customer in the health checks page via Book Now workflow',()=>{
         //Click HealthChecks
         cy.get('#menu-item-660').click()
         cy.url().should('include','/health-checks')
@@ -182,18 +182,18 @@ context('Launch Bluecrest Website' , () =>{
           .click();
 
         cy.wait(3000)
-        //Book Health MOTS Active
-        cy.get('.slick-track')
+        //Book Health MOTS Complete
+        cy.get('.package-card-content')
           .find('span[class="tag"]')
           .should('contains.text','Health MOTs');
-        cy.get('.slick-track')
+        cy.get('.package-card-content')
           .find('h3[class="package-title"]')
-          .should('contains.text','Active');
-        cy.get('.slick-track')
-          .find('span[class="price"]')
+          .should('contains.text','Complete');
+        cy.get('.package-card-content')
+          .find('span[class="current-price"]')
           .should('exist');
-        cy.get('.slick-track')
-          .find('a[data-link_label="Book now"]').eq(0)
+        cy.get('.package-card-content')
+          .find('a[data-link_label="Book now"]').eq(2)
           .click();
 
         // New Page will load
@@ -255,7 +255,7 @@ context('Launch Bluecrest Website' , () =>{
         //Order Summary
         cy.get('.order_summary_cards')
           .find('h5[class="custom-background-color"]')
-          .should('contains.text','Active Package');
+          .should('contains.text','Complete');
         cy.get('.order_summary_cards')
           .find('p')
           .should('contains.text','The Charmandean Centre, Forest Road');
@@ -265,7 +265,7 @@ context('Launch Bluecrest Website' , () =>{
         cy.contains('Cost').should('be.visible')
         cy.get('.text-right')
           .find('span[class="total-price custom-price-color"]')
-          .should('contains.text','Total £149.00');
+          .should('contains.text','Total £279.00');
         cy.get('.text-right')
           .find('button[id="discount-code-btn"]')
           .should('contains.text','Got a discount code?');
@@ -290,7 +290,7 @@ context('Launch Bluecrest Website' , () =>{
         cy.get('h1').should('contains.text','Personal details')
         cy.contains('Already Registered?').should('be.visible')
         cy.contains('Save some time and Login here... if not, please continue below').should('be.visible')
-        cy.contains('Order 1 - Active Package , at The Charmandean Centre, Forest Road').should('be.visible')
+        cy.contains('Order 1 - Complete , at The Charmandean Centre, Forest Road').should('be.visible')
 
         cy.contains('About you').should('be.visible')
         //Enter About you details and Address
@@ -339,30 +339,28 @@ context('Launch Bluecrest Website' , () =>{
           .click();
 
         cy.wait(3000)
-        //Healt MOTS Active More Info route 
-        cy.get('.slick-track')
+        //Healt MOTS Complete More Info route 
+        cy.get('.package-card-content')
           .find('span[class="tag"]')
           .should('contains.text','Health MOTs');
-        cy.get('.slick-track')
+        cy.get('.package-card-content')
           .find('h3[class="package-title"]')
-          .should('contains.text','Active');
-        cy.get('.slick-track')
-          .find('span[class="price"]')
+          .should('contains.text','Complete');
+        cy.get('.package-card-content')
+          .find('span[class="current-price"]')
           .should('exist');
-        cy.get('.slick-track')
-          .find('a[data-link_label="More info"]').eq(0)
+        cy.get('.package-card-content')
+          .find('a[data-link_label="More info"]').eq(2)
           .click();
 
-        //Test Active Screen
-        cy.url().should('include', '/tests/active')
+        //Test Complete Screen
+        cy.url().should('include', '/tests/complete')
         cy.get('.package-card-content').should('contains.text','Health MOTs')
-        cy.get('.package-title').should('contain.text','Active')
-        cy.get('.current-price').should('contains.text', '£149') // Current Prize £149
-
-
+        cy.get('.package-title').should('contain.text','Complete')
+        cy.get('.current-price').should('contains.text', '£279') // Current Prize £279
         cy.get('.package-detail-list').should('be.visible') // package-detail-list
         cy.log('Package detail lists include Sex and Age')
-        cy.get('.separate-price').should('contain.text','£290 when bought separately');
+        cy.get('.separate-price').should('contain.text','£430 when bought separately');
         
         //Book Now
         cy.get('a[href*="/buy/package"]').contains('Book now').click({ force: true });
@@ -388,11 +386,9 @@ context('Launch Bluecrest Website' , () =>{
         cy.get('.venue-map-col')
           .find('span[class="accordion-title"]')
           .should('contains.text','YOUR ORDER')
-
         cy.get('.venue-map-col')
           .find('div[id="accordion-close-container"]')
           .click();       
-        
         cy.get('#expand-basket-button').should('contains.text', 'YOUR ORDER')
         cy.get('#collapseOne').should('contains.text','Total cost')
 
@@ -427,7 +423,7 @@ context('Launch Bluecrest Website' , () =>{
         //Order Summary
         cy.get('.order_summary_cards')
           .find('h5[class="custom-background-color"]')
-          .should('contains.text','Active Package');
+          .should('contains.text','Complete');
         cy.get('.order_summary_cards')
           .find('p')
           .should('contains.text','The Charmandean Centre, Forest Road');
@@ -437,7 +433,7 @@ context('Launch Bluecrest Website' , () =>{
         cy.contains('Cost').should('be.visible')
         cy.get('.text-right')
           .find('span[class="total-price custom-price-color"]')
-          .should('contains.text','Total £149.00');
+          .should('contains.text','Total £279.00');
         cy.get('.text-right')
           .find('button[id="discount-code-btn"]')
           .should('contains.text','Got a discount code?');
@@ -462,12 +458,13 @@ context('Launch Bluecrest Website' , () =>{
         cy.get('h1').should('contains.text','Personal details')
         cy.contains('Already Registered?').should('be.visible')
         cy.contains('Save some time and Login here... if not, please continue below').should('be.visible')
-        cy.contains('Order 1 - Active Package , at The Charmandean Centre, Forest Road').should('be.visible')
+        cy.contains('Order 1 - Complete , at The Charmandean Centre, Forest Road').should('be.visible')
         
         cy.contains('About you').should('be.visible')
+
         //Enter About you details and Address
         cy.PersonalDetails('1','Dwayne','Wade','19','06','1982',"Male",'testtings@testingtest.com','testtings@testingtest.com','07123456789','Password@1','Password@1','BN112AA','3 Chesswood Road','Worthing','West Sussex','United Kingdom')
-      
+
         //Ticks terms and Privacy checkboxes
         cy.get('.checkboxes')
           .find('input[id="terms"]')
