@@ -17,6 +17,10 @@
   },
   "homepage": "https://github.com/spookobits/Cypress-Bluecrest-Website-Testing#readme",
   "devDependencies": {
+    "@testing-library/cypress": "^9.0.0",
     "cypress": "^12.7.0"
+  },
+  "dependencies": {
+    "cypress-real-events": "^1.7.6"
   }
 }

@@ -94,3 +94,6 @@ Cypress.Commands.add('PersonalDetails', (title, FirstName, LastName, DD, MM, YYY
        .find('select[name="user_country"]')
        .select(Country);
 })
+
+import '@testing-library/cypress/add-commands'
+import "cypress-real-events";
