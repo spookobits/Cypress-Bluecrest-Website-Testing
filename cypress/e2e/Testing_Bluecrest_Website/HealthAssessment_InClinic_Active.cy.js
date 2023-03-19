@@ -134,10 +134,9 @@ context('Launch Bluecrest Website' , () =>{
         cy.contains('Already Registered?').should('be.visible')
         cy.contains('Save some time and Login here... if not, please continue below').should('be.visible')
         cy.contains('Order 1 - Active Package , at The Charmandean Centre, Forest Road').should('be.visible')
-        
         cy.contains('About you').should('be.visible')
 
-        //Enter About you details and Address
+        //Enter PersonalDetails and Address(Title, FirstName, LastName, Day, Month, Year[DOB], emailAddress, confirm emailAddress, phone number, password, confirmPassword, PostCode, Address 1, Town, County, Country )
         cy.PersonalDetails('1','Dwayne','Wade','19','06','1982',"Male",'testtings@testingtest.com','testtings@testingtest.com','07123456789','Password@1','Password@1','BN112AA','3 Chesswood Road','Worthing','West Sussex','United Kingdom')
 
         //Ticks terms and Privacy checkboxes
@@ -291,9 +290,9 @@ context('Launch Bluecrest Website' , () =>{
         cy.contains('Already Registered?').should('be.visible')
         cy.contains('Save some time and Login here... if not, please continue below').should('be.visible')
         cy.contains('Order 1 - Active Package , at The Charmandean Centre, Forest Road').should('be.visible')
-
         cy.contains('About you').should('be.visible')
-        //Enter About you details and Address
+
+        //Enter PersonalDetails and Address(Title, FirstName, LastName, Day, Month, Year[DOB], emailAddress, confirm emailAddress, phone number, password, confirmPassword, PostCode, Address 1, Town, County, Country )
         cy.PersonalDetails('1','Dwayne','Wade','19','06','1982',"Male",'testtings@testingtest.com','testtings@testingtest.com','07123456789','Password@1','Password@1','BN112AA','3 Chesswood Road','Worthing','West Sussex','United Kingdom')
 
         //Ticks terms and Privacy checkboxes
@@ -358,7 +357,6 @@ context('Launch Bluecrest Website' , () =>{
         cy.get('.package-card-content').should('contains.text','Health MOTs')
         cy.get('.package-title').should('contain.text','Active')
         cy.get('.current-price').should('contains.text', '£149') // Current Prize £149
-
 
         cy.get('.package-detail-list').should('be.visible') // package-detail-list
         cy.log('Package detail lists include Sex and Age')
@@ -462,10 +460,10 @@ context('Launch Bluecrest Website' , () =>{
         cy.get('h1').should('contains.text','Personal details')
         cy.contains('Already Registered?').should('be.visible')
         cy.contains('Save some time and Login here... if not, please continue below').should('be.visible')
-        cy.contains('Order 1 - Active Package , at The Charmandean Centre, Forest Road').should('be.visible')
-        
+        cy.contains('Order 1 - Active Package , at The Charmandean Centre, Forest Road').should('be.visible') 
         cy.contains('About you').should('be.visible')
-        //Enter About you details and Address
+
+        //Enter PersonalDetails and Address(Title, FirstName, LastName, Day, Month, Year[DOB], emailAddress, confirm emailAddress, phone number, password, confirmPassword, PostCode, Address 1, Town, County, Country )
         cy.PersonalDetails('1','Dwayne','Wade','19','06','1982',"Male",'testtings@testingtest.com','testtings@testingtest.com','07123456789','Password@1','Password@1','BN112AA','3 Chesswood Road','Worthing','West Sussex','United Kingdom')
       
         //Ticks terms and Privacy checkboxes
