@@ -152,6 +152,7 @@ context('Launch Bluecrest Website' , () =>{
           .click();
         
         //Personal Details Loads
+        cy.url().should('include','/personal/details')
         cy.get('h1').should('contains.text','Personal details')
         cy.contains('Already Registered?').should('be.visible')
         cy.contains('Save some time and Login here... if not, please continue below').should('be.visible')
@@ -163,10 +164,27 @@ context('Launch Bluecrest Website' , () =>{
         cy.PersonalDetails('1',' ','Wade','19','06','1982',"Male",'testtings@testingtest.com','testtings@testingtest.com','07123456789','Password@1','Password@1','BN112AA','3 Chesswood Road','Worthing','West Sussex','United Kingdom')
         cy.get('button[disabled="disabled"]')
           .should('exist');
+        
+        //Clear Personal and Address Textbox
+        cy.get('input[id="first_name"]').clear()
+        cy.get('input[id="last_name"]').clear()
+        cy.get('input[name="dob-day"]').clear()
+        cy.get('input[name="dob-month"]').clear()
+        cy.get('input[name="dob-year"]').clear()
+        cy.get('input[name="email"]').clear()
+        cy.get('input[name="email-confirm"]').clear()
+        cy.get('input[name="phone_number"]').clear()
+        cy.get('input[name="password"]').clear()
+        cy.get('input[name="password_confirm"]').clear()
+        cy.get('input[name="user_postcode"]').clear()
+        cy.get('input[name="user_address1"]').clear()
+        cy.get('input[name="user_town"]').clear()
+        cy.get('input[name="user_town"]').clear()
+        cy.get('input[name="user_county"]').clear()
 
         //Enter PersonalDetails and Address(Title, FirstName, LastName, Day, Month, Year[DOB], emailAddress, confirm emailAddress, phone number, password, confirmPassword, PostCode, Address 1, Town, County, Country )
         cy.PersonalDetails('1','Dwayne','Wade','19','06','1982',"Male",'testtings@testingtest.com','testtings@testingtest.com','07123456789','Password@1','Password@1','BN112AA','3 Chesswood Road','Worthing','West Sussex','United Kingdom')
-
+        
         //Ticks terms and Privacy checkboxes
         cy.get('.checkboxes')
           .find('input[id="terms"]')
@@ -188,19 +206,6 @@ context('Launch Bluecrest Website' , () =>{
           .find('button[id="checkoutContinueButton"]')
           .should('be.enabled');
         //   .click();
-        
-        //Order Payment Screen Launch
-        // cy.get('h1').should('contains.text','Order Payment')
-        
-        //// //Book Now via 
-        // cy.get('a[href*="/buy/package"]').contains('Book now').click({ force: true });
-        // cy.wait(2000)
-        
-        // //Book Now force true for there is Uncaught TypeError: __insp.ws is undefined when after clicking Book Now via Package Card
-        // cy.get('a[href*="/buy/package"]').contains('Book now').click({ force: true });
-        // cy.wait(2000)
-        
-        
-        
+           
     })
 })

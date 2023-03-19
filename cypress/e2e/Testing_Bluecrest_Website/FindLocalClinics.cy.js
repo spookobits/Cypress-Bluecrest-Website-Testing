@@ -1,0 +1,298 @@
+/// <reference types="cypress" />
+
+context('Launch Bluecrest Website' , () =>{
+    beforeEach(() => {
+        cy.visit(Cypress.env('baseUrl'))
+
+        //Resizing the screen to its properties
+        cy.viewport(1348,979)
+
+        //Accept pop up cookies
+        cy.get('#onetrust-accept-btn-handler').click()
+        
+    })
+
+    it('Can Find My Local Clinics via home page slider and Click Location Worthing' , () =>{
+        cy.get('button[class="flickity-button flickity-prev-next-button next"]').click()
+        cy.get('button[class="flickity-button flickity-prev-next-button next"]').click()
+        cy.contains('A Clinic Near You').should('exist')
+        cy.get('a[class="button read-more"]').should('contains.text','Find My Local Clinics')
+        cy.contains('Find My Local Clinics').click()
+
+         //Wait for any pop ups 
+        cy.wait(5000)
+       
+        //Close any Pop ups
+        cy.get('#om-ekla71wjhnt9hjzuqta6-optin')
+          .should('be.visible')
+          .find('button[title="Close"]')
+          .click();
+        
+        //Location Page loads
+        cy.url().should('include','/locations')
+        cy.get('h1').should('contains.text','Find a private health check near you')
+        cy.contains('Convenient locations').should('exist')
+        cy.contains('South East').should('exist')
+        cy.contains('Worthing').should('exist')
+
+        //Click Location Worthing
+        cy.get('a[href*="https://www.bluecrestwellness.com/locations/worthing"]').click();
+        cy.url().should('include','/locations/worthing')
+        cy.get('h1').should('contains.text','Private Health Checks in Worthing')
+        cy.get('.article-heading')
+          .find('h2[class="title"]').should('contains.text','View our clinics in Worthing')
+        cy.get('.health-assesments')
+          .find('h2[class="title"]').should('contains.text','Health Assessments in Worthing')
+        
+        //Packages are available
+        cy.contains('Active').should('exist')
+        cy.contains('Core').should('exist')
+        cy.contains('Complete').should('exist')
+    })
+
+    it('Can Find My Local Clinics via home page slider and Click Location South East' , () =>{
+        cy.get('button[class="flickity-button flickity-prev-next-button next"]').click()
+        cy.get('button[class="flickity-button flickity-prev-next-button next"]').click()
+        cy.contains('A Clinic Near You').should('exist')
+        cy.get('a[class="button read-more"]').should('contains.text','Find My Local Clinics')
+        cy.contains('Find My Local Clinics').click()
+
+         //Wait for any pop ups 
+        cy.wait(5000)
+       
+        //Close any Pop ups
+        cy.get('#om-ekla71wjhnt9hjzuqta6-optin')
+          .should('be.visible')
+          .find('button[title="Close"]')
+          .click();
+        
+        //Location Page loads
+        cy.url().should('include','/locations')
+        cy.get('h1').should('contains.text','Find a private health check near you')
+        cy.contains('Convenient locations').should('exist')
+        cy.contains('South East').should('exist')
+        cy.contains('Worthing').should('exist')
+
+        //Click Location South East
+        cy.get('a[href*="https://www.bluecrestwellness.com/locations/south-east"]').click();
+        cy.url().should('include','/locations/south-east')
+        cy.get('h1').should('contains.text','Private Health Checks in South East')
+        cy.contains('View our clinics in South East').should('exist')
+        cy.get('.health-assesments')
+          .find('h2[class="title"]').should('contains.text','Health Assessments available in the South East')
+        
+        //Packages are available
+        cy.contains('Active').should('exist')
+        cy.contains('Core').should('exist')
+        cy.contains('Complete').should('exist')
+
+        //Choose a health check
+        cy.get('.regions-info')
+          .find('a[href*="https://www.bluecrestwellness.com/locations/brighton/jurys-inn-brighton"]').eq(1).click();
+        cy.url().should('include','/locations/brighton/jurys-inn-brighton')
+        cy.get('h1').should('contain.text',"Private health checks at Jury's Inn Brighton")
+        cy.get('.find-check_outer')
+          .find('h2').should('contains.text',"Health Checks available at Jury's Inn Brighton");
+        
+        //Packages are available
+        cy.contains('Active').should('exist')
+        cy.contains('Core').should('exist')
+        cy.contains('Complete').should('exist')
+    })
+
+    it('Book now via chossing a health Location South East' , () =>{
+        cy.get('button[class="flickity-button flickity-prev-next-button next"]').click()
+        cy.get('button[class="flickity-button flickity-prev-next-button next"]').click()
+        cy.contains('A Clinic Near You').should('exist')
+        cy.get('a[class="button read-more"]').should('contains.text','Find My Local Clinics')
+        cy.contains('Find My Local Clinics').click()
+
+         //Wait for any pop ups 
+        cy.wait(5000)
+       
+        //Close any Pop ups
+        cy.get('#om-ekla71wjhnt9hjzuqta6-optin')
+          .should('be.visible')
+          .find('button[title="Close"]')
+          .click();
+        
+        //Location Page loads
+        cy.url().should('include','/locations')
+        cy.get('h1').should('contains.text','Find a private health check near you')
+        cy.contains('Convenient locations').should('exist')
+        cy.contains('South East').should('exist')
+        cy.contains('Worthing').should('exist')
+
+        //Click Location South East
+        cy.get('a[href*="https://www.bluecrestwellness.com/locations/south-east"]').click();
+        cy.url().should('include','/locations/south-east')
+        cy.get('h1').should('contains.text','Private Health Checks in South East')
+        cy.contains('View our clinics in South East').should('exist')
+        cy.get('.health-assesments')
+          .find('h2[class="title"]').should('contains.text','Health Assessments available in the South East')
+
+        //Choose a health check
+        cy.get('a[href*="https://www.bluecrestwellness.com/locations/brighton/jurys-inn-brighton"]').eq(1).click()
+        cy.url().should('include','/locations/brighton/jurys-inn-brighton')
+        cy.get('h1').should('contain.text',"Private health checks at Jury's Inn Brighton")
+        cy.get('.find-check_outer')
+          .find('h2').should('contains.text',"Health Checks available at Jury's Inn Brighton");
+        cy.get('.container')
+          .find('a[data-link_label="Book Now"]').should('contain.text','Book Now')
+        
+        //Click Book Now
+        cy.get('.book-box')
+          .find('a[data-link_label="Book Now"]').click();
+        cy.url().should('include','/health-checks')
+        cy.get('h1').should('contains.text','Private Health Checks')
+
+        //Packages are available
+        cy.contains('Active').should('exist')
+        cy.contains('Core').should('exist')
+        cy.contains('Complete').should('exist')
+
+        //Book Health MOTs Active
+        cy.get('a[href*="/buy/package"]').contains('Book now').click({ force: true });
+        
+        //Find a location
+        cy.get('.venue-search-box')
+          .find('input[id="address-search"]')
+          .click()
+          .type('BN112AA');
+        cy.get('.venue-search-box')
+          .find('input[id="address-search-btn"]')
+          .should('be.visible')
+          .click();
+          //Wait until Venue will load
+        cy.wait(3000)
+        
+        //Your order  
+        cy.get('.venue-map-col')
+          .find('span[class="accordion-title"]')
+          .should('contains.text','YOUR ORDER')
+        cy.get('.venue-map-col')
+          .find('div[id="accordion-close-container"]')
+          .click();       
+        cy.get('#expand-basket-button').should('contains.text', 'YOUR ORDER')
+        cy.get('#collapseOne').should('contains.text','Total cost')
+
+        //Select a venue
+        cy.get('#venue-list')
+          .find('button[id="venue-303"]')
+          .click();
+        // Wait untit available dates will load  
+          cy.wait(2000)
+
+        //Select a Date
+        cy.get('#venue-303-screenings')
+          .find('button[id="screening-70091"]')
+          .click();
+
+        //Select available times
+        cy.get('#venue-303-appointments')
+          .find('div[class="time_cards_holder time"]')
+          .eq(0)
+          .click();
+
+        cy.get('#venue-303-reservation').should('contains.text',"If you are happy with your location, date and time, then please 'Confirm' to continue")
+
+        //Click Confirm
+        cy.get('#venue-303-reservation')
+          .find('button[data-link_label="Continue"]')
+          .click();
+        
+        //Order Summary will load
+        cy.get('h1').should('contains.text','Order Summary')
+        
+        //Order Summary
+        cy.get('.order_summary_cards')
+          .find('h5[class="custom-background-color"]')
+          .should('contains.text','Active Package');
+        cy.get('.order_summary_cards')
+          .find('p')
+          .should('contains.text','The Charmandean Centre, Forest Road');
+        cy.contains('Date').should('be.visible')
+        cy.contains('Time').should('be.visible')
+        cy.contains('Duration').should('be.visible')
+        cy.contains('Cost').should('be.visible')
+        cy.get('.text-right')
+          .find('span[class="total-price custom-price-color"]')
+          .should('contains.text','Total £149.00');
+        cy.get('.text-right')
+          .find('button[id="discount-code-btn"]')
+          .should('contains.text','Got a discount code?');
+        
+        //Click Got a discount code
+        cy.get('.text-right')
+          .find('button[id="discount-code-btn"]')
+          .click();
+        cy.get('#discount-code-field')
+          .find('input[name="offer_code"]')
+          .should('exist');  
+        cy.get('#discount-code-field')
+          .find('button[class="btn btn-outline-secondary"]')
+          .should('contains.text','Apply'); 
+        
+        //Click Continue
+        cy.get('.venue-continue-bar')
+          .find('a[id="checkoutContinueButton"]')
+          .click();
+        
+        //Personal Details Loads
+        cy.url().should('include','/personal/details')
+        cy.get('h1').should('contains.text','Personal details')
+        cy.contains('Already Registered?').should('be.visible')
+        cy.contains('Save some time and Login here... if not, please continue below').should('be.visible')
+        cy.contains('Order 1 - Active Package , at The Charmandean Centre, Forest Road').should('be.visible')
+        
+        cy.contains('About you').should('be.visible')
+
+        //Continue button disabled when mandatory fields in personal details and address is not entered
+        cy.PersonalDetails('1',' ','Wade','19','06','1982',"Male",'testtings@testingtest.com','testtings@testingtest.com','07123456789','Password@1','Password@1','BN112AA','3 Chesswood Road','Worthing','West Sussex','United Kingdom')
+        cy.get('button[disabled="disabled"]')
+          .should('exist');
+        
+        //Clear Personal and Address Textbox
+        cy.get('input[id="first_name"]').clear()
+        cy.get('input[id="last_name"]').clear()
+        cy.get('input[name="dob-day"]').clear()
+        cy.get('input[name="dob-month"]').clear()
+        cy.get('input[name="dob-year"]').clear()
+        cy.get('input[name="email"]').clear()
+        cy.get('input[name="email-confirm"]').clear()
+        cy.get('input[name="phone_number"]').clear()
+        cy.get('input[name="password"]').clear()
+        cy.get('input[name="password_confirm"]').clear()
+        cy.get('input[name="user_postcode"]').clear()
+        cy.get('input[name="user_address1"]').clear()
+        cy.get('input[name="user_town"]').clear()
+        cy.get('input[name="user_town"]').clear()
+        cy.get('input[name="user_county"]').clear()
+
+        //Enter PersonalDetails and Address(Title, FirstName, LastName, Day, Month, Year[DOB], emailAddress, confirm emailAddress, phone number, password, confirmPassword, PostCode, Address 1, Town, County, Country )
+        cy.PersonalDetails('1','Dwayne','Wade','19','06','1982',"Male",'testtings@testingtest.com','testtings@testingtest.com','07123456789','Password@1','Password@1','BN112AA','3 Chesswood Road','Worthing','West Sussex','United Kingdom')
+        
+        //Ticks terms and Privacy checkboxes
+        cy.get('.checkboxes')
+          .find('input[id="terms"]')
+          .click();
+        cy.get('.checkboxes')
+          .find('input[id="Privacy Policy"]')
+          .click();
+        
+        //You order and total cost
+        cy.get('#order-accordion')
+          .find('span[class="accordion-title"]')
+          .should('contains.text','YOUR ORDER');
+          cy.get('#order-accordion')
+          .find('div[class="accordion-title"]')
+          .should('contains.text','Total cost');
+
+        //Continue
+        cy.get('.venue-continue-bar')
+          .find('button[id="checkoutContinueButton"]')
+          .should('be.enabled');
+        //   .click();
+        
+    })
+})
